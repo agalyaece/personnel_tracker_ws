@@ -100,7 +100,9 @@ const register = async (req, res) => {
 
 // Send verification email with transporter parameter
 const sendVerificationEmail = async (email, token, transporter) => {
-  const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/auth/verify-email?token=${token}`;
+  // const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/auth/verify-email?token=${token}`;
+  const verificationUrl = `${'https://personnel-tracker-ws.onrender.com'}/auth/verify-email?token=${token}`;
+
   console.log("verification sent to: ", verificationUrl);
   const mailOptions = {
     from: process.env.EMAIL_USER,
