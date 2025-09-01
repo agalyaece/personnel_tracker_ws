@@ -218,10 +218,10 @@ const verifyEmail = async (req, res) => {
 };
 
 // Login user and start job
-// Login user and start job
 const login = async (req, res) => {
   try {
-    const { email, deviceId, loginPhoto } = req.body;
+    // const { email, deviceId, loginPhoto } = req.body;
+    const { email, loginPhoto } = req.body;
 
     // Check if user exists and is verified
     const user = await User.findOne({ email });
@@ -237,7 +237,7 @@ const login = async (req, res) => {
     // Create new job
     const job = new Job({
       userId: user._id,
-      deviceId: deviceId,
+      // deviceId: deviceId,
       loginPhoto: loginPhoto
     });
 
