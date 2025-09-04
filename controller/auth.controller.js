@@ -6,7 +6,6 @@ import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
 const createTransporter = () => {
-  // Check if environment variables exist
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.error('Email credentials not found in environment variables');
     return null;
@@ -59,7 +58,7 @@ const register = async (req, res) => {
 
     console.log('Saving user...');
     await user.save();
-    console.log('User saved successfully'); // Debug log
+    console.log('User saved successfully'); 
 
     //  send verification email
     const transporter = createTransporter();
@@ -220,8 +219,7 @@ const verifyEmail = async (req, res) => {
 // Login user and start job
 const login = async (req, res) => {
   try {
-    // const { email, deviceId, loginPhoto } = req.body;
-    const { email, loginPhoto } = req.body;
+    const { email, deviceId, loginPhoto } = req.body;
 
     // Check if user exists and is verified
     const user = await User.findOne({ email });
@@ -237,7 +235,7 @@ const login = async (req, res) => {
     // Create new job
     const job = new Job({
       userId: user._id,
-      // deviceId: deviceId,
+      deviceId: deviceId,
       loginPhoto: loginPhoto
     });
 
